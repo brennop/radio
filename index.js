@@ -54,13 +54,16 @@ client.on("message", async (message) => {
 });
 
 client.on("voiceStateUpdate", (oldState, newState) => {
-  const members = oldState.channel?.members;
-  if (members == null) return;
+  const channel = oldState.channel;
+  if(channel == null) return;
+
+  const members = channel.members;
   if (
+    members &&
     members.get(client.user.id) &&
     members.filter(({ user }) => user.bot === false).size < 1
   ) {
-    oldState.channel.leave();
+    channel.leave();
   }
 });
 
