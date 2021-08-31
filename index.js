@@ -35,21 +35,32 @@ client.on("message", async (message) => {
 
     const url = radios[arg];
     if (url == null) {
-      const error = `Radio not found: ${arg}\nAvailable radios: ${Object.keys(radios).join(", ")}`;
+      const error = `Radio not found: ${arg}\nAvailable radios: ${Object.keys(
+        radios
+      ).join(", ")}`;
       message.channel.send(error);
       return;
     }
 
     const stream = ytdl(url);
 
-    message.member.voice.channel
-      .join()
-      .then((connection) =>
-        connection
-          .play(stream, { type: "unknown" })
-          .on("start", () => message.channel.send(`Now playing ${url}`))
-          .on("finish", () => message.guild.me.voice.channel.leave())
-      );
+    message.member.voice.channel.join().then((connection) =>
+      connection
+        .play(stream, { type: "unknown" })
+        .on("start", () => message.channel.send(`Now playing ${url}`))
+        .on("finish", () => message.guild.me.voice.channel.leave())
+    );
+  }
+});
+
+client.on("voiceStateUpdate", (oldState, newState) => {
+  const members = oldState.channel?.members;
+  if (members == null) return;
+  if (
+    members.get(client.user.id) &&
+    members.filter(({ user }) => user.bot === false).size < 1
+  ) {
+    oldState.channel.leave();
   }
 });
 
