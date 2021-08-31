@@ -1,0 +1,21 @@
+{
+  "name": "dradio",
+  "version": "1.0.0",
+  "description": "radio do brennim",
+  "main": "index.js",
+  "author": "brennop",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "12.5.3",
+    "dotenv": "^10.0.0",
+    "ytdl-core": "^4.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
