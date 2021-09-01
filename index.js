@@ -12,6 +12,9 @@ const radios = {
   indie: "https://www.youtube.com/watch?v=oVi5gtzTDx0",
   games: "https://www.youtube.com/watch?v=Sdf5-3yddvA",
   lofi: "https://www.youtube.com/watch?v=5qap5aO4i9A",
+  chill: "https://www.youtube.com/watch?v=5yx6BWlEVcY",
+  darksynth: "https://www.youtube.com/watch?v=s6V8ZpLfD-c",
+  chillsynth: "https://www.youtube.com/watch?v=xxgxkjV70Vc"
 };
 
 const client = new Discord.Client();
