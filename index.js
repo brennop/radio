@@ -11,8 +11,7 @@ const settings = {
 const radios = {
   indie: "https://www.youtube.com/watch?v=oVi5gtzTDx0",
   games: "https://www.youtube.com/watch?v=Sdf5-3yddvA",
-  lofi1: "https://www.youtube.com/watch?v=5qap5aO4i9A",
-  lofi2: "https://www.youtube.com/watch?v=mu8j6-k4HIM",
+  lofi: "https://www.youtube.com/watch?v=5qap5aO4i9A",
 };
 
 const client = new Discord.Client();
@@ -42,11 +41,14 @@ client.on("message", async (message) => {
       return;
     }
 
-    const stream = ytdl(url);
+    const stream = ytdl(url, {
+      quality: [93,94,91,92,95], // format must be HLS
+      highWaterMark: 1<<16, // default: 1<<19 (512kb)
+    });
 
     message.member.voice.channel.join().then((connection) =>
       connection
-        .play(stream, { type: "unknown" })
+        .play(stream, { highWaterMark: 1 })
         .on("start", () => message.channel.send(`Now playing ${url}`))
         .on("finish", () => message.guild.me.voice.channel.leave())
     );

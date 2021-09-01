@@ -1,6 +1,6 @@
-FROM node:12
+FROM node:12-alpine
 
-RUN apt update && apt install --no-install-recommends -y ffmpeg
+RUN apk add ffmpeg
 
 WORKDIR /usr/src/app
 
