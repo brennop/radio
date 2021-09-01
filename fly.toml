@@ -1,6 +1,6 @@
-# fly.toml file generated for bold-water-1126 on 2021-08-31T16:19:14-03:00
+# fly.toml file generated for dradio on 2021-08-31T21:55:51-03:00
 
-app = "bold-water-1126"
+app = "dradio"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
